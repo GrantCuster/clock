@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html, body {
+  background: theme('colors.neutral.100');
+  color: theme('colors.neutral.900');
+}
+
+input, textarea {
+  background: theme('colors.neutral.200');
+  color: theme('colors.neutral.900');
+}
