@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "noImplicitReturns": true,
+    "sourceMap": true,
+    "strict": false,
+    "target": "es2017",
+    "noImplicitAny": true,
+    "esModuleInterop": true,
+    "baseUrl": "."
+  },
+  "include": ["server.ts"]
+}

@@ -4,18 +4,25 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build",
-    "lint": "eslint .",
+    "dev": "tsx server.ts",
+    "build": "npx tsup --tsconfig tsconfig.tsup.json server.ts && mv dist/server.cjs ./server.cjs",
+    "start": "NODE_ENV=production node server.cjs",
     "preview": "vite preview"
   },
   "dependencies": {
+    "axios": "^1.7.8",
+    "express": "^4.21.1",
     "jotai": "^2.10.2",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "tsup": "^8.3.5",
+    "tsx": "^4.19.2",
+    "vite-express": "^0.20.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.13.0",
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.10.1",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "^4.3.3",
