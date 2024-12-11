@@ -1,6 +1,8 @@
 import { useRef, useState, useEffect } from "react";
-import { showChooserAtom } from "./atoms";
-import { useSetAtom } from "jotai";
+import { customDigitsAtom, showChooserAtom } from "./atoms";
+import { useAtom, useSetAtom } from "jotai";
+import { Button } from "./Components";
+import { ImageIcon } from "lucide-react";
 
 export function Clock() {
   const intervalRef = useRef<number | null>(null);
@@ -39,14 +41,7 @@ export function Clock() {
               backgroundRepeat: "no-repeat",
             }}
           ></div>
-          <div
-            className="h-full w-full"
-            style={{
-              backgroundImage: `url("/${hours[1]}.jpg")`,
-              backgroundSize: "100% 100%",
-              backgroundRepeat: "no-repeat",
-            }}
-          ></div>
+          <DigitImage digit={hours[1]} />
           <div
             className="h-full w-1/2"
             style={{
@@ -55,22 +50,8 @@ export function Clock() {
               backgroundRepeat: "no-repeat",
             }}
           ></div>
-          <div
-            className="h-full w-full"
-            style={{
-              backgroundImage: `url("/${minutes[0]}.jpg")`,
-              backgroundSize: "100% 100%",
-              backgroundRepeat: "no-repeat",
-            }}
-          ></div>
-          <div
-            className="h-full w-full"
-            style={{
-              backgroundImage: `url("/${minutes[1]}.jpg")`,
-              backgroundSize: "100% 100%",
-              backgroundRepeat: "no-repeat",
-            }}
-          ></div>
+          <DigitImage digit={minutes[0]} />
+          <DigitImage digit={minutes[1]} />
           <div
             className="h-1/2 w-full"
             style={{
@@ -82,13 +63,31 @@ export function Clock() {
         </div>
       </div>
       <div className="flex justify-center pb-4">
-        <button
-          className="text-white px-4 py-2 bg-neutral-800 hover:bg-neutral-700 rounded-full uppercase"
-          onClick={() => setShowChooser(true)}
-        >
-          Contribute
-        </button>
+        <Button onClick={() => setShowChooser(true)}>
+          <ImageIcon size={16} /> Contribute
+        </Button>
       </div>
     </div>
+  );
+}
+
+function DigitImage({ digit }: { digit: string }) {
+  const [customDigits] = useAtom(customDigitsAtom);
+
+  const imageString =
+    customDigits[digit as keyof typeof customDigits]?.replace(
+      /(\r\n|\n|\r)/gm,
+      "",
+    ) || digit + ".jpg";
+
+  return (
+    <div
+      className="h-full w-full"
+      style={{
+        backgroundImage: `url("/${imageString}")`,
+        backgroundSize: "100% 100%",
+        backgroundRepeat: "no-repeat",
+      }}
+    ></div>
   );
 }

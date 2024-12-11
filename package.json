@@ -10,9 +10,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@types/multer": "^1.4.12",
     "axios": "^1.7.8",
+    "body-parser": "^1.20.3",
     "express": "^4.21.1",
     "jotai": "^2.10.2",
+    "lucide-react": "^0.464.0",
+    "multer": "^1.4.5-lts.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "tsup": "^8.3.5",
